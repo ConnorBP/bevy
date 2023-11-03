@@ -102,7 +102,8 @@ bevy_text = ["bevy_internal/bevy_text", "bevy_asset", "bevy_sprite"]
 bevy_ui = ["bevy_internal/bevy_ui", "bevy_core_pipeline", "bevy_text", "bevy_sprite"]
 
 # winit window and input backend
-bevy_winit = ["bevy_internal/bevy_winit"]
+#bevy_winit = ["bevy_internal/bevy_winit"]
+bevy_winit = ["dep:bevy_winit"]
 
 # Adds support for rendering gizmos
 bevy_gizmos = ["bevy_internal/bevy_gizmos"]
@@ -251,6 +252,8 @@ webgl2 = ["bevy_internal/webgl"]
 [dependencies]
 bevy_dylib = { path = "crates/bevy_dylib", version = "0.11.2", default-features = false, optional = true }
 bevy_internal = { path = "crates/bevy_internal", version = "0.11.2", default-features = false }
+# jank patch to release 0.11.3 for input to enable touch events from winit 0.28.7
+bevy_winit = { git = "https://github.com/bevyengine/bevy", branch = "release-0.11.3", optional=true}
 
 [dev-dependencies]
 anyhow = "1.0.4"
